@@ -18,8 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TodoState {
   bool get loading => throw _privateConstructorUsedError;
   TodoResponse get todo => throw _privateConstructorUsedError;
+  int? get currentPage => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoStateCopyWith<TodoState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -29,7 +32,7 @@ abstract class $TodoStateCopyWith<$Res> {
   factory $TodoStateCopyWith(TodoState value, $Res Function(TodoState) then) =
       _$TodoStateCopyWithImpl<$Res, TodoState>;
   @useResult
-  $Res call({bool loading, TodoResponse todo});
+  $Res call({bool loading, TodoResponse todo, int? currentPage});
 
   $TodoResponseCopyWith<$Res> get todo;
 }
@@ -44,11 +47,14 @@ class _$TodoStateCopyWithImpl<$Res, $Val extends TodoState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? todo = null,
+    Object? currentPage = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -59,9 +65,15 @@ class _$TodoStateCopyWithImpl<$Res, $Val extends TodoState>
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
               as TodoResponse,
+      currentPage: freezed == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TodoResponseCopyWith<$Res> get todo {
@@ -79,7 +91,7 @@ abstract class _$$TodoStateImplCopyWith<$Res>
       __$$TodoStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, TodoResponse todo});
+  $Res call({bool loading, TodoResponse todo, int? currentPage});
 
   @override
   $TodoResponseCopyWith<$Res> get todo;
@@ -93,11 +105,14 @@ class __$$TodoStateImplCopyWithImpl<$Res>
       _$TodoStateImpl _value, $Res Function(_$TodoStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? todo = null,
+    Object? currentPage = freezed,
   }) {
     return _then(_$TodoStateImpl(
       loading: null == loading
@@ -108,6 +123,10 @@ class __$$TodoStateImplCopyWithImpl<$Res>
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
               as TodoResponse,
+      currentPage: freezed == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -116,7 +135,9 @@ class __$$TodoStateImplCopyWithImpl<$Res>
 
 class _$TodoStateImpl implements _TodoState {
   const _$TodoStateImpl(
-      {this.loading = false, this.todo = const TodoResponse()});
+      {this.loading = false,
+      this.todo = const TodoResponse(),
+      this.currentPage});
 
   @override
   @JsonKey()
@@ -124,10 +145,12 @@ class _$TodoStateImpl implements _TodoState {
   @override
   @JsonKey()
   final TodoResponse todo;
+  @override
+  final int? currentPage;
 
   @override
   String toString() {
-    return 'TodoState(loading: $loading, todo: $todo)';
+    return 'TodoState(loading: $loading, todo: $todo, currentPage: $currentPage)';
   }
 
   @override
@@ -136,13 +159,17 @@ class _$TodoStateImpl implements _TodoState {
         (other.runtimeType == runtimeType &&
             other is _$TodoStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.todo, todo) || other.todo == todo));
+            (identical(other.todo, todo) || other.todo == todo) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, todo);
+  int get hashCode => Object.hash(runtimeType, loading, todo, currentPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoStateImplCopyWith<_$TodoStateImpl> get copyWith =>
@@ -150,15 +177,22 @@ class _$TodoStateImpl implements _TodoState {
 }
 
 abstract class _TodoState implements TodoState {
-  const factory _TodoState({final bool loading, final TodoResponse todo}) =
-      _$TodoStateImpl;
+  const factory _TodoState(
+      {final bool loading,
+      final TodoResponse todo,
+      final int? currentPage}) = _$TodoStateImpl;
 
   @override
   bool get loading;
   @override
   TodoResponse get todo;
   @override
-  @JsonKey(ignore: true)
+  int? get currentPage;
+
+  /// Create a copy of TodoState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoStateImplCopyWith<_$TodoStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

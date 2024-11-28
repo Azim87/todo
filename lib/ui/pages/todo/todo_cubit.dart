@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
+import 'package:todo/configs/router/router.dart';
 import 'package:todo/core/utils/globals.dart';
 import 'package:todo/data/model/todo/todo_response.dart';
 import 'package:todo/data/repository/todo.dart';
@@ -8,25 +10,19 @@ import 'package:todo/data/repository/todo.dart';
 part 'todo_cubit.freezed.dart';
 part 'todo_state.dart';
 
-@lazySingleton
+@injectable
 class TodoCubit extends Cubit<TodoState> {
-  TodoCubit(this.todoRepository) : super(const TodoState()) {
-    allTodo();
-  }
+  TodoCubit(this.todoRepository) : super(const TodoState());
 
   final TodoRepository todoRepository;
 
-  Future<void> allTodo() async {
-    _showLoading();
-    final result = await todoRepository.allTodo();
-    _hideLoading();
-
+  Future<List<TodoData>> allTodo(int page) async {
+    final result = await todoRepository.allTodo(page, 10);
     if (result.isSuccess) {
-      if (result.success?.success ?? false) {
-        emit(state.copyWith(todo: result.success ?? const TodoResponse()));
-      }
+      emit(state.copyWith(currentPage: page));
+      return result.success?.data ?? [];
     }
-    if (result.isError) showErrorDialog(result.error?.message ?? '');
+    return [];
   }
 
   Future<void> deleteTodo(int? id) async {
@@ -36,10 +32,13 @@ class TodoCubit extends Cubit<TodoState> {
 
     if (result.isSuccess) {
       if (result.success?.success ?? false) {
-        allTodo();
+        navigatorKey.currentContext!.pop();
+        emit(state.copyWith(currentPage: 0));
       }
     }
-    if (result.isError) showErrorDialog(result.error?.message ?? '');
+    if (result.isError) {
+      showErrorDialog(result.error?.message ?? '');
+    }
   }
 
   void _showLoading() => emit(state.copyWith(loading: true));

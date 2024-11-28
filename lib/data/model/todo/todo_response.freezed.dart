@@ -23,8 +23,12 @@ mixin _$TodoResponse {
   List<TodoData>? get data => throw _privateConstructorUsedError;
   bool? get success => throw _privateConstructorUsedError;
 
+  /// Serializes this TodoResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TodoResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoResponseCopyWith<TodoResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$TodoResponseCopyWithImpl<$Res, $Val extends TodoResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$TodoResponseImplCopyWithImpl<$Res>
       _$TodoResponseImpl _value, $Res Function(_$TodoResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,12 +149,14 @@ class _$TodoResponseImpl implements _TodoResponse {
             (identical(other.success, success) || other.success == success));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_data), success);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoResponseImplCopyWith<_$TodoResponseImpl> get copyWith =>
@@ -171,8 +181,11 @@ abstract class _TodoResponse implements TodoResponse {
   List<TodoData>? get data;
   @override
   bool? get success;
+
+  /// Create a copy of TodoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoResponseImplCopyWith<_$TodoResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -188,8 +201,12 @@ mixin _$TodoData {
   String? get description => throw _privateConstructorUsedError;
   bool? get completed => throw _privateConstructorUsedError;
 
+  /// Serializes this TodoData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoDataCopyWith<TodoData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -212,6 +229,8 @@ class _$TodoDataCopyWithImpl<$Res, $Val extends TodoData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -260,6 +279,8 @@ class __$$TodoDataImplCopyWithImpl<$Res>
       _$TodoDataImpl _value, $Res Function(_$TodoDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -324,12 +345,14 @@ class _$TodoDataImpl implements _TodoData {
                 other.completed == completed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, title, description, completed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoDataImplCopyWith<_$TodoDataImpl> get copyWith =>
@@ -361,8 +384,11 @@ abstract class _TodoData implements TodoData {
   String? get description;
   @override
   bool? get completed;
+
+  /// Create a copy of TodoData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoDataImplCopyWith<_$TodoDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

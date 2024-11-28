@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:todo/core/endpoints.dart';
+import 'package:todo/core/utils/constants.dart';
+import 'package:todo/data/model/login/login_response.dart';
+import 'package:todo/data/model/signup/signup_response.dart';
 import 'package:todo/data/model/success/todo_success_response.dart';
-
-import '../data/model/login/login_response.dart';
-import '../data/model/signup/signup_response.dart';
-import '../data/model/todo/todo_response.dart';
+import 'package:todo/data/model/todo/todo_response.dart';
 
 part 'todo_api_service.g.dart';
 
@@ -13,34 +14,41 @@ part 'todo_api_service.g.dart';
 @lazySingleton
 abstract class TodoApiService {
   @factoryMethod
-  factory TodoApiService(Dio dio, {@Named('todo') final String baseUrl}) = _TodoApiService;
+  factory TodoApiService(
+    Dio dio, {
+    @Named(Constants.API_NAME) final String baseUrl,
+  }) = _TodoApiService;
 
-  @POST('signup')
+  @POST(Endpoints.SIGNUP)
   Future<SignupResponse> signup({
-    @Body() required Map<String, dynamic> body,
+    @Body() required final Map<String, dynamic> body,
   });
 
-  @POST('login')
+  @POST(Endpoints.LOGIN)
   Future<LoginResponse> login({
-    @Body() required Map<String, dynamic> body,
+    @Body() required final Map<String, dynamic> body,
   });
 
-  @GET('auth/todo/all')
-  Future<TodoResponse> allTodo();
+  @GET(Endpoints.GET_ALL_TODOS)
+  @Extra({Constants.APP_VERSION: true})
+  Future<TodoResponse> allTodo({
+    @Query(TodoQueries.PAGE) required final int page,
+    @Query(TodoQueries.PAGE_SIZE) required final int pageSize,
+  });
 
-  @POST('auth/todo/addTodo')
+  @POST(Endpoints.ADD_TODO)
   Future<TodoSuccessResponse> addTodo({
-    @Body() required Map<String, dynamic> body,
+    @Body() required final Map<String, dynamic> body,
   });
 
-  @PUT('auth/todo/todo{id}')
+  @PUT(Endpoints.EDIT_TODO)
   Future<TodoSuccessResponse> editTodo({
-    @Path('id') required final int id,
-    @Body() required Map<String, dynamic> body,
+    @Path(Paths.ID) required final int id,
+    @Body() required final Map<String, dynamic> body,
   });
 
-  @DELETE('auth/todo/delete{id}')
+  @DELETE(Endpoints.DELETE_TODO)
   Future<TodoSuccessResponse> deleteTodo({
-    @Path('id') required final int id,
+    @Path(Paths.ID) required final int id,
   });
 }

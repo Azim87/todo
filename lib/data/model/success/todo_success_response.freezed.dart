@@ -23,8 +23,12 @@ mixin _$TodoSuccessResponse {
   String? get message => throw _privateConstructorUsedError;
   bool? get success => throw _privateConstructorUsedError;
 
+  /// Serializes this TodoSuccessResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TodoSuccessResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TodoSuccessResponseCopyWith<TodoSuccessResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$TodoSuccessResponseCopyWithImpl<$Res, $Val extends TodoSuccessResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TodoSuccessResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$TodoSuccessResponseImplCopyWithImpl<$Res>
       $Res Function(_$TodoSuccessResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TodoSuccessResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$TodoSuccessResponseImpl implements _TodoSuccessResponse {
             (identical(other.success, success) || other.success == success));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message, success);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TodoSuccessResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TodoSuccessResponseImplCopyWith<_$TodoSuccessResponseImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _TodoSuccessResponse implements TodoSuccessResponse {
   String? get message;
   @override
   bool? get success;
+
+  /// Create a copy of TodoSuccessResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TodoSuccessResponseImplCopyWith<_$TodoSuccessResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -13,9 +13,9 @@ final class TodoRepository {
 
   TodoRepository(this._apiService);
 
-  Future<Result<ErrorResponse, TodoResponse>> allTodo() async {
+  Future<Result<ErrorResponse, TodoResponse>> allTodo(final int page, final int pageSize) async {
     try {
-      final response = await _apiService.allTodo();
+      final response = await _apiService.allTodo(page: page, pageSize: pageSize);
       return Result.success(response);
     } on DioException catch (err) {
       return Result.error(ErrorResponse.fromJson(err.response?.data));

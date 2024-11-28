@@ -4,6 +4,7 @@ import 'package:todo/configs/di/di_container.dart';
 import 'package:todo/configs/router/r.dart';
 import 'package:todo/data/data_source/local_data.dart';
 import 'package:todo/ui/pages/authorization/login/login.dart';
+import 'package:todo/ui/pages/splash%20/splash_page.dart';
 import 'package:todo/ui/pages/todo/create/create_todo.dart';
 import 'package:todo/ui/pages/todo/details/todo_details.dart';
 import 'package:todo/ui/pages/todo/edit/edit_todo.dart';
@@ -16,19 +17,23 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  routes: <RouteBase>[
+  routes: [
     GoRoute(
       path: R.root,
-      builder: (context, state) => LoginPage(),
+      builder: (context, state) => const SplashPage(),
       redirect: (context, state) async {
         final localData = getIt<LocalData>();
         final accessToken = await localData.readAccessToken();
         if (accessToken != null) {
           return R.todo;
+        } else {
+          return R.login;
         }
-
-        return null;
       },
+    ),
+    GoRoute(
+      path: R.login,
+      builder: (context, state) => LoginPage(),
     ),
     GoRoute(
       path: R.signUp,
@@ -41,7 +46,8 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: R.detailsTodo,
           name: R.detailsTodo,
-          builder: (context, state) => TodoDetails(todoData: state.extra as TodoData),
+          builder: (context, state) =>
+              TodoDetails(todoData: state.extra as TodoData),
         ),
         GoRoute(
           path: R.createTodo,

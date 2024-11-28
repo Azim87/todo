@@ -3,6 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:todo/configs/interceptor/auth_interceptor.dart';
+import 'package:todo/configs/interceptor/refresh_token.dart';
+import 'package:todo/core/endpoints.dart';
+import 'package:todo/core/utils/constants.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -12,31 +15,30 @@ abstract class DiModule {
   Dio create() => setUpForDio();
 
   @prod
-  @Named('todo')
+  @Named(Constants.API_NAME)
   String get prodBaseUrl => 'http://localhost:9090/';
 
   @dev
-  @Named('todo')
-  String get devBaseUrl => 'http://localhost:8080/';
+  @Named(Constants.API_NAME)
+  String get devBaseUrl => Endpoints.BASE_URL;
 
   @injectable
-  @Named('DioWithLogger')
+  @Named(Constants.DIO_NAME)
   Dio setUpForDio() => Dio()
     ..interceptors.add(prettyDioLogger)
+    ..interceptors.add(getIt<RefreshToken>())
     ..interceptors.add(getIt<AuthInterceptor>());
 
   @lazySingleton
   PrettyDioLogger get prettyDioLogger => PrettyDioLogger(
         requestHeader: true,
-        // Показываем заголовки запросов
+        request: true,
         requestBody: true,
-        // Показываем тело запроса
-        responseHeader: true,
-        // Показываем заголовки ответа
+        responseHeader: false,
+        error: true,
+        enabled: true,
         responseBody: true,
-        // Показываем тело ответа
         compact: true,
-        // Убираем компактный режим для лучшего отображения
-        maxWidth: 90,
+        maxWidth: 190,
       );
 }

@@ -90,9 +90,15 @@ class _TodoApiService implements TodoApiService {
   }
 
   @override
-  Future<TodoResponse> allTodo() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+  Future<TodoResponse> allTodo({
+    required int page,
+    required int pageSize,
+  }) async {
+    final _extra = <String, dynamic>{'App-version': true};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'page_size': pageSize,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<TodoResponse>(Options(
