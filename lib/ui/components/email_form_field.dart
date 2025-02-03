@@ -20,8 +20,8 @@ class EmailFormField extends FormField<String> {
               }
             },
             decoration: InputDecoration(
-              labelText: 'Email',
-              border: const OutlineInputBorder(),
+              labelText: 'Емейл',
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
               errorText: state.hasError ? state.errorText : null,
             ),
             keyboardType: TextInputType.emailAddress,

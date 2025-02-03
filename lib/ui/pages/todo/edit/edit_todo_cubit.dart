@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todo/configs/router/router.dart';
+import 'package:todo/config/router/router.dart';
 import 'package:todo/data/model/todo/todo_response.dart';
 import 'package:todo/data/repository/todo.dart';
 
@@ -17,8 +17,7 @@ class EditTodoCubit extends Cubit<EditTodoState> {
 
   void onEditTitle(String? title) => emit(state.copyWith(title: title));
 
-  void onEditDescription(String? description) =>
-      emit(state.copyWith(description: description));
+  void onEditDescription(String? description) => emit(state.copyWith(description: description));
 
   Future<void> onEdit(int id) async {
     emit(state.copyWith(loading: true));

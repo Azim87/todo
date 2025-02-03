@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/configs/di/di_container.dart';
+import 'package:todo/config/di/di_container.dart';
 import 'package:todo/core/utils/ext.dart';
 import 'package:todo/ui/components/todo_form_field.dart';
 import 'package:todo/ui/pages/todo/create/create_todo_cubit.dart';

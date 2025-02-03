@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:todo/core/utils/ext.dart';
+import 'package:todo/ui/components/auth_button.dart';
+import 'package:todo/ui/components/auth_form_widget.dart';
 import 'package:todo/ui/pages/authorization/signup/signup_cubit.dart';
 
-import '../../../../configs/di/di_container.dart';
-import '../../../../configs/router/r.dart';
-import '../../../components/email_form_field.dart';
-import '../../../components/password_form_field.dart';
+import '../../../../config/di/di_container.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
@@ -16,48 +14,43 @@ class SignUpPage extends StatelessWidget {
   final _cubit = getIt<SignUpCubit>();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Sign Up Page')),
-        body: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      EmailFormField(
-                        validator: (v) => v == null ? 'Email не может быть пустым!' : null,
-                        onSaved: (email) => _cubit.onEmailSave(email!),
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => _cubit,
+        child: BlocBuilder<SignUpCubit, SignUpState>(
+          builder: (context, state) => Scaffold(
+            backgroundColor: Colors.green,
+            appBar: AppBar(
+              title: const Text('Sign Up Page'),
+              backgroundColor: Colors.green,
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: AuthButton(
+              action: 'Регистрация',
+              onPressed: () => _formKey.validateAndSave(() => ()),
+            ),
+            body: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Form(
+                      key: _formKey,
+                      child: AuthFormWidget(
+                        onEmailSave: (email) => _cubit.onEmailSave(email),
+                        onPhoneSave: (phone) => _cubit.onPhoneNumberSave(phone),
+                        onPasswordSave: (password) => _cubit.onPasswordSave(password),
+                        onNavigate: null,
+                        onAuthTypeChange: _cubit.setAuthType,
+                        isLogin: false,
+                        isPhone: state.isPhone,
                       ),
-                      const SizedBox(height: 16),
-                      PasswordFormField(
-                        validator: (v) => v == null ? 'Пароль не может быть пустым!' : null,
-                        onSaved: (password) => _cubit.onPasswordSave(password!),
-                      ),
-                      const SizedBox(height: 16),
-                      TextButton(onPressed: () => context.push(R.root), child: const Text('Login')),
-                      BlocBuilder<SignUpCubit, SignUpState>(
-                        bloc: _cubit,
-                        builder: (context, state) {
-                          if (state.loading) {
-                            return const CircularProgressIndicator();
-                          }
-                          return FilledButton.tonal(
-                            onPressed: () => _formKey.validateAndSave(() => _cubit.onLogin()),
-                            child: const Text('Sign Up'),
-                          );
-                        },
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       );
 }

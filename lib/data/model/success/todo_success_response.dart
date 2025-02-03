@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'todo_success_response.freezed.dart';
+
 part 'todo_success_response.g.dart';
 
 @freezed

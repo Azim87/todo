@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo/configs/router/router.dart';
+import 'package:todo/config/router/router.dart';
 
-Future<void> showErrorDialog(String data, {Function()? callback}) async =>
-    showDialog(
+Future<void> showErrorDialog(String data, {Function()? callback}) async => showDialog(
       context: navigatorKey.currentContext!,
       builder: (BuildContext context) => AlertDialog(
         title: const Text('Ошибка'),
@@ -19,8 +18,7 @@ Future<void> showErrorDialog(String data, {Function()? callback}) async =>
       ),
     );
 
-Future<void> showSuccessDialog(String data, Function() callback) async =>
-    showDialog(
+Future<void> showSuccessDialog(String data, Function() callback) async => showDialog(
       context: navigatorKey.currentContext!,
       builder: (BuildContext context) => AlertDialog(
         title: const Text('Success'),

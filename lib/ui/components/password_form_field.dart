@@ -20,8 +20,8 @@ class PasswordFormField extends FormField<String> {
               }
             },
             decoration: InputDecoration(
-              labelText: 'Password',
-              border: const OutlineInputBorder(),
+              labelText: 'Пароль',
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
               errorText: state.hasError ? state.errorText : null,
             ),
             obscureText: false,

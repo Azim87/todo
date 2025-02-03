@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todo/configs/router/router.dart';
+import 'package:todo/config/router/router.dart';
 import 'package:todo/core/utils/globals.dart';
 import 'package:todo/data/model/todo/todo_response.dart';
 import 'package:todo/data/repository/todo.dart';

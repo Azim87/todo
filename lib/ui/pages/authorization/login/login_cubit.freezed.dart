@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LoginState {
   bool get loading => throw _privateConstructorUsedError;
+  bool get isPhone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -34,7 +36,13 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({bool loading, String? email, String? password, String? error});
+  $Res call(
+      {bool loading,
+      bool isPhone,
+      String? email,
+      String? phone,
+      String? password,
+      String? error});
 }
 
 /// @nodoc
@@ -53,7 +61,9 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? loading = null,
+    Object? isPhone = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? password = freezed,
     Object? error = freezed,
   }) {
@@ -62,9 +72,17 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPhone: null == isPhone
+          ? _value.isPhone
+          : isPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -86,7 +104,13 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, String? email, String? password, String? error});
+  $Res call(
+      {bool loading,
+      bool isPhone,
+      String? email,
+      String? phone,
+      String? password,
+      String? error});
 }
 
 /// @nodoc
@@ -103,7 +127,9 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? isPhone = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? password = freezed,
     Object? error = freezed,
   }) {
@@ -112,9 +138,17 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPhone: null == isPhone
+          ? _value.isPhone
+          : isPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -132,13 +166,23 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
-      {this.loading = false, this.email, this.password, this.error});
+      {this.loading = false,
+      this.isPhone = false,
+      this.email,
+      this.phone,
+      this.password,
+      this.error});
 
   @override
   @JsonKey()
   final bool loading;
   @override
+  @JsonKey()
+  final bool isPhone;
+  @override
   final String? email;
+  @override
+  final String? phone;
   @override
   final String? password;
   @override
@@ -146,7 +190,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(loading: $loading, email: $email, password: $password, error: $error)';
+    return 'LoginState(loading: $loading, isPhone: $isPhone, email: $email, phone: $phone, password: $password, error: $error)';
   }
 
   @override
@@ -155,14 +199,17 @@ class _$LoginStateImpl implements _LoginState {
         (other.runtimeType == runtimeType &&
             other is _$LoginStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.isPhone, isPhone) || other.isPhone == isPhone) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, email, password, error);
+  int get hashCode =>
+      Object.hash(runtimeType, loading, isPhone, email, phone, password, error);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -176,14 +223,20 @@ class _$LoginStateImpl implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final bool loading,
+      final bool isPhone,
       final String? email,
+      final String? phone,
       final String? password,
       final String? error}) = _$LoginStateImpl;
 
   @override
   bool get loading;
   @override
+  bool get isPhone;
+  @override
   String? get email;
+  @override
+  String? get phone;
   @override
   String? get password;
   @override

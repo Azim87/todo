@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todo/configs/di/di_container.dart';
+import 'package:todo/config/di/di_container.dart';
 import 'package:todo/core/utils/either.dart';
 import 'package:todo/data/data_source/local_data.dart';
 import 'package:todo/data/model/error/error_response.dart';
@@ -24,7 +24,7 @@ final class LoginRepository {
       await localData.cacheTokens(result.accessToken, result.refreshToken);
       return Result.success(result);
     } on DioException catch (err) {
-      if(err.type == DioExceptionType.connectionError) {
+      if (err.type == DioExceptionType.connectionError) {
         Result.error(ErrorResponse.fromJson(err.response?.data));
       }
       return Result.error(ErrorResponse.fromJson(err.response?.data));

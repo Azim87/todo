@@ -1,5 +1,5 @@
 abstract class Constants {
-  static const String METHOD_CHANNEL_NAME = 'todo/app_version';
+  static const String METHOD_CHANNEL_NAME = 'archa/app_version';
   static const String CALL_METHOD = 'getPlatformVersion';
   static const String APP_VERSION = 'App-version';
   static const String UPDATE_REFRESH_TOKEN = 'refresh_token';

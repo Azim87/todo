@@ -14,6 +14,13 @@ extension FormKeyExtension on GlobalKey<FormState> {
 
 extension ListOfWidgetExt on List<Widget> {
   List<Widget> withGap({double? height, double? width}) => [
-        for (int i = 0; i < length; i++) ...[if (i >= 0) SizedBox(height: height, width: width), this[i]]
+        for (int i = 0; i < length; i++) ...[
+          if (i >= 0)
+            SizedBox(
+              height: height,
+              width: width,
+            ),
+          this[i]
+        ]
       ];
 }

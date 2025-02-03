@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "856865351455",
+    "project_id": "archa-a5d0b",
+    "storage_bucket": "archa-a5d0b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856865351455:android:693d368b855e62d0fb322a",
+        "android_client_info": {
+          "package_name": "com.archa.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6riRSDKzW59sf_mO19L74PK9A8F5awN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

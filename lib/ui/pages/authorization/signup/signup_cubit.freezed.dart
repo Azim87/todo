@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignUpState {
   bool get loading => throw _privateConstructorUsedError;
+  bool get isPhone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpState
@@ -33,7 +35,12 @@ abstract class $SignUpStateCopyWith<$Res> {
           SignUpState value, $Res Function(SignUpState) then) =
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
-  $Res call({bool loading, String? email, String? password});
+  $Res call(
+      {bool loading,
+      bool isPhone,
+      String? email,
+      String? phone,
+      String? password});
 }
 
 /// @nodoc
@@ -52,7 +59,9 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   @override
   $Res call({
     Object? loading = null,
+    Object? isPhone = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? password = freezed,
   }) {
     return _then(_value.copyWith(
@@ -60,9 +69,17 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPhone: null == isPhone
+          ? _value.isPhone
+          : isPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -80,7 +97,12 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, String? email, String? password});
+  $Res call(
+      {bool loading,
+      bool isPhone,
+      String? email,
+      String? phone,
+      String? password});
 }
 
 /// @nodoc
@@ -97,7 +119,9 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? isPhone = null,
     Object? email = freezed,
+    Object? phone = freezed,
     Object? password = freezed,
   }) {
     return _then(_$SignUpStateImpl(
@@ -105,9 +129,17 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isPhone: null == isPhone
+          ? _value.isPhone
+          : isPhone // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
       password: freezed == password
           ? _value.password
@@ -120,19 +152,29 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpStateImpl implements _SignUpState {
-  const _$SignUpStateImpl({this.loading = false, this.email, this.password});
+  const _$SignUpStateImpl(
+      {this.loading = false,
+      this.isPhone = false,
+      this.email,
+      this.phone,
+      this.password});
 
   @override
   @JsonKey()
   final bool loading;
   @override
+  @JsonKey()
+  final bool isPhone;
+  @override
   final String? email;
+  @override
+  final String? phone;
   @override
   final String? password;
 
   @override
   String toString() {
-    return 'SignUpState(loading: $loading, email: $email, password: $password)';
+    return 'SignUpState(loading: $loading, isPhone: $isPhone, email: $email, phone: $phone, password: $password)';
   }
 
   @override
@@ -141,13 +183,16 @@ class _$SignUpStateImpl implements _SignUpState {
         (other.runtimeType == runtimeType &&
             other is _$SignUpStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.isPhone, isPhone) || other.isPhone == isPhone) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, loading, isPhone, email, phone, password);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -161,13 +206,19 @@ class _$SignUpStateImpl implements _SignUpState {
 abstract class _SignUpState implements SignUpState {
   const factory _SignUpState(
       {final bool loading,
+      final bool isPhone,
       final String? email,
+      final String? phone,
       final String? password}) = _$SignUpStateImpl;
 
   @override
   bool get loading;
   @override
+  bool get isPhone;
+  @override
   String? get email;
+  @override
+  String? get phone;
   @override
   String? get password;
 

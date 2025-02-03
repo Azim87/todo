@@ -15,4 +15,15 @@ class Result<E, S> {
   bool get isSuccess => success != null;
 
   bool get isError => error != null;
+
+  void when({
+    required final Function(S success) onSuccess,
+    required final Function(E error) onError,
+  }) {
+    if (isSuccess) {
+      onSuccess(success as S);
+    } else if (isError) {
+      onError(error as E);
+    }
+  }
 }

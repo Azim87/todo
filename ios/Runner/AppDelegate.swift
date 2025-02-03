@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import GoogleMaps
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {
@@ -7,7 +8,7 @@ import UIKit
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        
+        GMSServices.provideAPIKey("2a6f8c21a30d3024e038d67d7d4eba647dc79cd4")
         let controller = window?.rootViewController as! FlutterViewController
         let channel = FlutterMethodChannel(name: "todo/app_version", binaryMessenger: controller.binaryMessenger)
         channel.setMethodCallHandler {

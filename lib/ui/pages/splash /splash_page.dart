@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:typewritertext/typewritertext.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -9,26 +9,17 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final _controller = TypeWriterController(
-    repeat: false,
-    text: 'Alma',
-    duration: const Duration(milliseconds: 400),
-  );
-
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: const Color(0xFF020e2a),
+        backgroundColor: Colors.green,
         body: Center(
-          child: Stack(
-            children: [
-              TypeWriter(
-                controller: _controller,
-                builder: (c, v) => Text(
-                  v.text,
-                  style: const TextStyle(fontFamily: 'Lofty', fontSize: 130, color: Color(0xFFb2ffff), fontWeight: FontWeight.w500),
-                ),
-              ),
-            ],
+          child: SvgPicture.asset(
+            'assets/images/archa2.svg',
+            height: 200,
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcATop,
+            ),
           ),
         ),
       );
